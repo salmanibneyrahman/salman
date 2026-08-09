@@ -126,7 +126,7 @@ export default function Hero() {
             <motion.h1
               initial={{ y: '102%' }}
               animate={{ y: booted ? '0%' : '102%' }}
-              transition={{ duration: 0.9, delay: 0.45, ease: [0.76, 0, 0.24, 1] }}
+              transition={{ duration: 0.9, delay: 0.38, ease: [0.76, 0, 0.24, 1] }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] text-white"
             >
               {headLine1}{' '}
@@ -325,14 +325,26 @@ export default function Hero() {
         >
           Scroll Down
         </span>
-        <div className="w-[26px] h-[42px] rounded-full border border-emerald-500/40 flex justify-center pt-2">
+        <div className="w-[26px] h-[42px] rounded-full border border-emerald-500/40 flex justify-center pt-2 shadow-[inset_0_0_6px_rgba(52,211,153,0.15)]">
           <motion.div
-            animate={{ y: [0, 14, 0], opacity: [1, 0, 1] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+            animate={{
+              y: [0, 14, 0],
+              opacity: [1, 0.1, 1],
+              boxShadow: [
+                '0 0 12px #34d399, 0 0 24px #34d399',
+                '0 0 2px #34d399, 0 0 0px transparent',
+                '0 0 12px #34d399, 0 0 24px #34d399'
+              ]
+            }}
+            transition={{
+              duration: 1.6,
+              repeat: Infinity,
+              ease: 'easeInOut'
+            }}
             className="w-1 h-2 rounded-full bg-emerald-400"
-            style={{ boxShadow: '0 0 8px #34d399' }}
           />
         </div>
+
       </motion.div>
     </section>
   );
