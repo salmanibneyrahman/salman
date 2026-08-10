@@ -1,28 +1,6 @@
 'use client';
 
 import { motion } from 'motion/react';
-import {
-  SiNextdotjs,
-  SiReact,
-  SiTypescript,
-  SiJavascript,
-  SiNodedotjs,
-  SiExpress,
-  SiMongodb,
-  SiPython,
-  SiTensorflow,
-  SiPytorch,
-  SiScikitlearn,
-  SiPandas,
-  SiNumpy,
-  SiOpencv,
-  SiStripe,
-  SiTailwindcss,
-  SiVercel,
-  SiStreamlit,
-  SiGit,
-  SiGithub,
-} from 'react-icons/si';
 
 /* ─── Noise overlay ──────────────────────────────────────────── */
 function Noise({ opacity = 0.03 }) {
@@ -73,7 +51,7 @@ function Bracket({ pos, color = '#34d399', size = 18, thickness = 1.5, delay = 0
   );
 }
 
-/* ─── Mono label — contrast বাড়ানো হয়েছে ───────────────────── */
+/* ─── Mono label ─────────────────────────────────────────────── */
 function MonoLabel({ children, color = 'rgba(52,211,153,0.8)', style = {} }) {
   return (
     <span
@@ -92,7 +70,7 @@ function MonoLabel({ children, color = 'rgba(52,211,153,0.8)', style = {} }) {
   );
 }
 
-/* ─── Story paragraph with line accent — text উজ্জ্বল ───────── */
+/* ─── Story paragraph with line accent ──────────────────────── */
 function StoryPara({ children, index }) {
   return (
     <motion.div
@@ -123,9 +101,9 @@ function StoryPara({ children, index }) {
   );
 }
 
-/* ─── Code terminal block — contrast fix ────────────────────── */
-function Terminal() {
-  const SL = 'rgba(203,213,225,0.75)'; // punctuation — আগে 0.4 ছিল, এখন পড়া যায়
+/* ─── profile.js code body (window-এর ডান pane) ──────────────── */
+function TerminalBody() {
+  const SL = 'rgba(203,213,225,0.75)';
   const lines = [
     {
       indent: 0, tokens: [
@@ -160,24 +138,6 @@ function Terminal() {
     },
     {
       indent: 1, tokens: [
-        { t: 'shipped', c: '#34d399' },
-        { t: ': ', c: SL },
-        { t: '9', c: '#f472b6' },
-        { t: ', live: ', c: SL },
-        { t: '6', c: '#f472b6' },
-        { t: ',', c: SL },
-      ]
-    },
-    {
-      indent: 1, tokens: [
-        { t: 'capstone', c: '#34d399' },
-        { t: ': ', c: SL },
-        { t: "'AgriTech ML — Bangladesh'", c: '#22d3ee' },
-        { t: ',', c: SL },
-      ]
-    },
-    {
-      indent: 1, tokens: [
         { t: 'measures', c: '#34d399' },
         { t: ': ', c: SL },
         { t: 'true', c: '#a78bfa' },
@@ -196,49 +156,16 @@ function Terminal() {
   ];
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        borderRadius: 6,
-        background: 'rgba(8,10,20,0.9)',
-        border: '1px solid rgba(52,211,153,0.22)',
-        overflow: 'hidden',
-      }}
-    >
-      <Bracket pos={{ top: 10, left: 10 }} size={14} delay={0.4} />
-      <Bracket pos={{ top: 10, right: 10 }} size={14} delay={0.5} />
-      <Bracket pos={{ bottom: 10, left: 10 }} size={14} delay={0.6} />
-      <Bracket pos={{ bottom: 10, right: 10 }} size={14} delay={0.7} />
-
-      {/* Title bar */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '12px 20px',
-          borderBottom: '1px solid rgba(52,211,153,0.15)',
-          background: 'rgba(52,211,153,0.06)',
-        }}
-      >
-        <div style={{ display: 'flex', gap: 7 }}>
-          {['#ff5f57', '#ffbd2e', '#28ca41'].map((c) => (
-            <div key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c, opacity: 0.9 }} />
-          ))}
-        </div>
-        <MonoLabel color="rgba(52,211,153,0.7)">profile.js</MonoLabel>
-        <MonoLabel color="rgba(52,211,153,0.45)">UTF-8</MonoLabel>
-      </div>
-
-      {/* Code */}
-      <div style={{ padding: '20px 24px 24px', position: 'relative', zIndex: 3 }}>
+    <div style={{ position: 'relative' }}>
+      {/* Line numbers + code */}
+      <div style={{ position: 'relative' }}>
         <div
           style={{
             position: 'absolute',
             left: 0,
-            top: '3.5rem',
+            top: 0,
             bottom: 0,
-            width: 38,
+            width: 34,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-end',
@@ -262,7 +189,7 @@ function Terminal() {
           ))}
         </div>
 
-        <div style={{ paddingLeft: 32 }}>
+        <div style={{ paddingLeft: 30 }}>
           {lines.map((line, li) => (
             <motion.div
               key={li}
@@ -292,7 +219,7 @@ function Terminal() {
           transition={{ duration: 1, repeat: Infinity }}
           style={{
             display: 'inline-block',
-            marginLeft: 32,
+            marginLeft: 30,
             width: 7,
             height: 14,
             background: '#34d399',
@@ -302,7 +229,7 @@ function Terminal() {
         />
       </div>
 
-      {/* Bottom scanline */}
+      {/* Scanline */}
       <motion.div
         animate={{ y: ['0%', '1200%'] }}
         transition={{ duration: 5, repeat: Infinity, ease: 'linear', repeatDelay: 3 }}
@@ -312,110 +239,10 @@ function Terminal() {
           right: 0,
           height: 1,
           background: 'linear-gradient(90deg,transparent,rgba(52,211,153,0.45),transparent)',
-          zIndex: 4,
+          pointerEvents: 'none',
           top: 0,
         }}
       />
-    </div>
-  );
-}
-
-/* ─── Tech marquee — উপরে logo, নিচে নাম (pic-এর মতো) ───────── */
-const TECHS = [
-  { name: 'Next.js', Icon: SiNextdotjs, color: '#ffffff' },
-  { name: 'React', Icon: SiReact, color: '#61DAFB' },
-  { name: 'TypeScript', Icon: SiTypescript, color: '#3178C6' },
-  { name: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E' },
-  { name: 'Node.js', Icon: SiNodedotjs, color: '#5FA04E' },
-  { name: 'Express', Icon: SiExpress, color: '#ffffff' },
-  { name: 'MongoDB', Icon: SiMongodb, color: '#47A248' },
-  { name: 'Python', Icon: SiPython, color: '#4B8BBE' },
-  { name: 'TensorFlow', Icon: SiTensorflow, color: '#FF6F00' },
-  { name: 'PyTorch', Icon: SiPytorch, color: '#EE4C2C' },
-  { name: 'scikit-learn', Icon: SiScikitlearn, color: '#F7931E' },
-  { name: 'Pandas', Icon: SiPandas, color: '#E70488' },
-  { name: 'NumPy', Icon: SiNumpy, color: '#7395CF' },
-  { name: 'OpenCV', Icon: SiOpencv, color: '#8B78F5' },
-  { name: 'Stripe', Icon: SiStripe, color: '#8A83FF' },
-  { name: 'Tailwind', Icon: SiTailwindcss, color: '#38BDF8' },
-  { name: 'Vercel', Icon: SiVercel, color: '#ffffff' },
-  { name: 'Streamlit', Icon: SiStreamlit, color: '#FF4B4B' },
-  { name: 'Git', Icon: SiGit, color: '#F05032' },
-  { name: 'GitHub', Icon: SiGithub, color: '#e6edf3' },
-];
-
-function TechMarquee() {
-  return (
-    <div
-      style={{
-        position: 'relative',
-        overflow: 'hidden',
-        borderTop: '1px solid rgba(52,211,153,0.12)',
-        borderBottom: '1px solid rgba(52,211,153,0.12)',
-        padding: '28px 0',
-        background: 'rgba(5,8,16,0.6)',
-      }}
-    >
-      {/* fade edges */}
-      <div
-        style={{
-          position: 'absolute', top: 0, left: 0, bottom: 0, width: 90, zIndex: 2,
-          background: 'linear-gradient(90deg,#03030a,transparent)', pointerEvents: 'none',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute', top: 0, right: 0, bottom: 0, width: 90, zIndex: 2,
-          background: 'linear-gradient(-90deg,#03030a,transparent)', pointerEvents: 'none',
-        }}
-      />
-
-      <motion.div
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: 36, repeat: Infinity, ease: 'linear' }}
-        style={{ display: 'flex', gap: 18, width: 'max-content' }}
-      >
-        {[...TECHS, ...TECHS].map((t, i) => {
-          const Icon = t.Icon;
-          return (
-            <div
-              key={i}
-              className="group"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 12,
-                padding: '18px 26px',
-                borderRadius: 10,
-                border: '1px solid rgba(52,211,153,0.16)',
-                background: 'rgba(10,14,24,0.85)',
-                backdropFilter: 'blur(12px)',
-                minWidth: 116,
-              }}
-            >
-              <span
-                className="transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6"
-                style={{ display: 'inline-flex', filter: `drop-shadow(0 0 10px ${t.color}55)` }}
-              >
-                <Icon size={26} color={t.color} />
-              </span>
-              <span
-                style={{
-                  fontFamily: "'JetBrains Mono','Fira Code',monospace",
-                  fontSize: 11,
-                  fontWeight: 800,
-                  letterSpacing: '0.08em',
-                  color: '#e2e8f0',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {t.name}
-              </span>
-            </div>
-          );
-        })}
-      </motion.div>
     </div>
   );
 }
@@ -446,7 +273,7 @@ export default function About() {
       />
 
       <div style={{ position: 'relative', zIndex: 10, maxWidth: 1280, margin: '0 auto', padding: '0 3rem' }}>
-        {/* ══ SECTION HEADER — main code এর মতোই ══ */}
+        {/* ══ SECTION HEADER ══ */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -462,36 +289,83 @@ export default function About() {
           </h2>
         </motion.div>
 
-        {/* ══ MAIN GRID ══ */}
-        <div
-          className="about-main-grid"
-          style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start', marginBottom: '5rem' }}
+        {/* ══ SINGLE EDITOR WINDOW — split pane ══ */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+          style={{
+            position: 'relative',
+            borderRadius: 10,
+            background: 'rgba(8,10,20,0.92)',
+            border: '1px solid rgba(52,211,153,0.18)',
+            backdropFilter: 'blur(20px)',
+            overflow: 'hidden',
+            marginBottom: '5rem',
+            boxShadow: '0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(52,211,153,0.05)',
+          }}
         >
-          {/* ── LEFT: Story (NARRATIVE // ORIGIN) ── */}
-          <div>
-            <div
-              style={{
-                position: 'relative',
-                padding: '2.5rem',
-                background: 'rgba(8,10,20,0.75)',
-                border: '1px solid rgba(52,211,153,0.18)',
-                borderRadius: 6,
-                backdropFilter: 'blur(20px)',
-              }}
-            >
-              <Bracket pos={{ top: 12, left: 12 }} size={16} delay={0.2} />
-              <Bracket pos={{ top: 12, right: 12 }} size={16} delay={0.3} />
-              <Bracket pos={{ bottom: 12, left: 12 }} size={16} delay={0.4} />
-              <Bracket pos={{ bottom: 12, right: 12 }} size={16} delay={0.5} />
+          {/* Window corner brackets */}
+          <Bracket pos={{ bottom: 10, left: 10 }} size={16} delay={0.4} />
+          <Bracket pos={{ bottom: 10, right: 10 }} size={16} delay={0.5} />
 
+          {/* ── Title bar (Mac terminal style) ── */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '12px 20px',
+              borderBottom: '1px solid rgba(52,211,153,0.15)',
+              background: 'rgba(52,211,153,0.05)',
+            }}
+          >
+            <div style={{ display: 'flex', gap: 7 }}>
+              {['#ff5f57', '#ffbd2e', '#28ca41'].map((c) => (
+                <div key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c, opacity: 0.9 }} />
+              ))}
+            </div>
+            <MonoLabel color="rgba(52,211,153,0.6)">salman@portfolio: ~/about</MonoLabel>
+            <MonoLabel color="rgba(52,211,153,0.45)">UTF-8</MonoLabel>
+          </div>
+
+          {/* ── Split panes ── */}
+          <div className="about-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+            {/* ══ LEFT PANE: Narrative ══ */}
+            <div style={{ padding: '2.2rem 2.5rem' }}>
+              {/* Pane header */}
               <div
                 style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  marginBottom: 28, paddingBottom: 20,
-                  borderBottom: '1px solid rgba(52,211,153,0.15)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginBottom: 26,
+                  paddingBottom: 16,
+                  borderBottom: '1px solid rgba(52,211,153,0.1)',
                 }}
               >
-                <MonoLabel>NARRATIVE // ORIGIN</MonoLabel>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div
+                    style={{
+                      fontFamily: 'monospace, ui-monospace',
+                      fontSize: '0.85rem',
+                      fontWeight: 700,
+                      color: '#34d399',
+                      letterSpacing: '0.2em',
+                      textTransform: 'uppercase',
+                      textShadow: '0 0 10px rgba(52,211,153,0.4)',
+                    }}
+                  >
+                    NARRATIVE // ORIGIN
+                  </div>
+                  {/* Blinking cursor */}
+                  <motion.div
+                    animate={{ opacity: [0, 1, 0] }}
+                    transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
+                    style={{ width: 6, height: 12, background: '#34d399' }}
+                  />
+                </div>
                 <div style={{ display: 'flex', gap: 5 }}>
                   {[0, 1, 2].map((i) => (
                     <motion.div
@@ -504,53 +378,102 @@ export default function About() {
                 </div>
               </div>
 
+              {/* Paragraphs */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                <StoryPara index={0}>
-                  I didn&apos;t set out to become a developer — I just started{' '}
-                  <span style={{ color: '#34d399', fontWeight: 600 }}>building</span>, got hooked,
-                  and never stopped. Curiosity was the spark. Nine-plus shipped projects are the proof.
-                </StoryPara>
-                <StoryPara index={1}>
-                  I love the whole arc: sculpting a clean interface, engineering a backend that holds
-                  under pressure, and turning{' '}
-                  <span style={{ color: '#22d3ee', fontWeight: 500 }}>noisy, messy data</span>{' '}
-                  into a model that predicts something real.
-                </StoryPara>
-                <StoryPara index={2}>
-                  By day I ship production apps with{' '}
-                  <span style={{ color: '#34d399', fontWeight: 500 }}>Next.js, React, Node, MongoDB</span>.
-                  In the same breath I build ML pipelines in{' '}
-                  <span style={{ color: '#22d3ee', fontWeight: 500 }}>Python</span>. Two crafts, one
-                  obsession: things that work.
-                </StoryPara>
-                <StoryPara index={3}>
-                  I care about performance, security, and numbers. If it ships,{' '}
-                  <span style={{ color: '#f472b6', fontWeight: 500 }}>I measure it</span>.
-                  Outside code: datasets, sustainability, and agricultural tech. I read data
-                  the way other people read novels.
-                </StoryPara>
+                {/* Para 1 */}
+                <motion.div
+                  initial={{ opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
+                  animate={{ opacity: 1, clipPath: 'inset(0 0% 0 0)' }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: 'easeInOut' }}
+                >
+                  <StoryPara index={0}>
+                    I didn&apos;t set out to become a developer — I just started{' '}
+                    <span style={{ color: '#34d399', fontWeight: 600 }}>building</span>, got hooked,
+                    and never stopped. Curiosity was the spark. Nine-plus shipped projects are the proof.
+                  </StoryPara>
+                </motion.div>
+                {/* Para 2 */}
+                <motion.div
+                  initial={{ opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
+                  animate={{ opacity: 1, clipPath: 'inset(0 0% 0 0)' }}
+                  transition={{ duration: 0.8, delay: 0.8, ease: 'easeInOut' }}
+                >
+                  <StoryPara index={1}>
+                    I love the whole arc: sculpting a clean interface, engineering a backend that holds
+                    under pressure, and turning{' '}
+                    <span style={{ color: '#34d399', fontWeight: 500 }}>noisy, messy data</span>{' '}
+                    into a model that predicts something real.
+                  </StoryPara>
+                </motion.div>
+                {/* Para 3 */}
+                <motion.div
+                  initial={{ opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
+                  animate={{ opacity: 1, clipPath: 'inset(0 0% 0 0)' }}
+                  transition={{ duration: 0.8, delay: 1.4, ease: 'easeInOut' }}
+                >
+                  <StoryPara index={2}>
+                    By day I ship production apps with{' '}
+                    <span style={{ color: '#34d399', fontWeight: 500 }}>Next.js, React, Node, MongoDB</span>.
+                    In the same breath I build ML pipelines in{' '}
+                    <span style={{ color: '#34d399', fontWeight: 500 }}>Python</span>. Two crafts, one
+                    obsession: things that work.
+                  </StoryPara>
+                </motion.div>
+                {/* Para 4 */}
+                <motion.div
+                  initial={{ opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
+                  animate={{ opacity: 1, clipPath: 'inset(0 0% 0 0)' }}
+                  transition={{ duration: 0.8, delay: 2.0, ease: 'easeInOut' }}
+                >
+                  <StoryPara index={3}>
+                    I care about performance, security, and numbers. If it ships,{' '}
+                    <span style={{ color: '#34d399', fontWeight: 500 }}>I measure it</span>.
+                    Outside code: datasets, sustainability, and agricultural tech. I read data
+                    the way other people read novels.
+                  </StoryPara>
+                </motion.div>
               </div>
             </div>
-          </div>
 
-          {/* ── RIGHT: Terminal ── */}
-          <div>
-            <Terminal />
-          </div>
-        </div>
-      </div>
+            {/* ══ RIGHT PANE: profile.js ══ */}
+            <div
+              className="about-pane-right"
+              style={{
+                borderLeft: '1px solid rgba(52,211,153,0.1)',
+                padding: '2.2rem 2.5rem',
+                background: 'rgba(5,8,16,0.5)',
+              }}
+            >
+              {/* Pane header */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginBottom: 26,
+                  paddingBottom: 16,
+                  borderBottom: '1px solid rgba(52,211,153,0.1)',
+                }}
+              >
+                <MonoLabel color="rgba(52,211,153,0.75)">profile.js</MonoLabel>
+                <MonoLabel color="rgba(52,211,153,0.4)">javascript</MonoLabel>
+              </div>
 
-      {/* ══ TECH MARQUEE (full-bleed) ══ */}
-      <div style={{ position: 'relative', zIndex: 10 }}>
-        <TechMarquee />
+              <TerminalBody />
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Responsive */}
       <style jsx global>{`
         @media (max-width: 1024px) {
-          .about-main-grid {
+          .about-split {
             grid-template-columns: 1fr !important;
-            gap: 2.5rem !important;
+          }
+          .about-pane-right {
+            border-left: none !important;
+            border-top: 1px solid rgba(52,211,153,0.12);
           }
         }
         @media (max-width: 600px) {
