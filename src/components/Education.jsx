@@ -37,9 +37,6 @@ export default function Education() {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="px-4 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-sm font-bold">
-                CGPA 3.17 / 4.00
-              </div>
               <div className="px-4 py-2 rounded-2xl bg-white/5 border border-white/10 text-zinc-300 font-mono text-sm">
                 2022 – 2026
               </div>
