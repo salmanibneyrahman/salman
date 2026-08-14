@@ -142,12 +142,12 @@ export default function Hero() {
                   marginRight: '0.32em',
                   ...(wd.g
                     ? {
-                        background: 'linear-gradient(90deg,#34d399,#22d3ee)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                        fontWeight: 600,
-                      }
+                      background: 'linear-gradient(90deg,#34d399,#22d3ee)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      fontWeight: 600,
+                    }
                     : {}),
                   ...(wd.c ? { color: wd.c, fontWeight: 500 } : {}),
                   ...(wd.w ? { color: '#f0f0f8', fontWeight: 500 } : {}),
